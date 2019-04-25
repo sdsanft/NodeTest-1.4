@@ -1,0 +1,30 @@
+{
+    "sdsanft": {
+        "firstName": "Sam",
+        "lastName": "Sanft",
+        "email": "sdsanft@gmail.com",
+        "username": "sdsanft",
+        "password": "12345678",
+        "meetingInfo": {
+            "meetingTitle": "Sales Meeting",
+            "meetingLink": "",
+            "timezone": -7,
+            "days": [
+                false,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false
+            ],
+            "timeIn": 9,
+            "timeOut": 17,
+            "length": 30
+        },
+        "nylasInfo": {
+            "auth": false,
+            "ACCESS_TOKEN": null
+        }
+    }
+}
