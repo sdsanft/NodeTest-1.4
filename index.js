@@ -36,14 +36,20 @@ app.post('/signup', function(req, res) {
     meetingInfo = {meetingTitle: "Sales Meeting", meetingLink: "", timezone: -7, days: [false, true, true, true, true, true, false], timeIn: 9, timeOut: 17, length: 30}
     nylasInfo = {auth: false, ACCESS_TOKEN: null}
     response = {firstName : req.body.first, lastName : req.body.last, email : req.body.email, username : req.body.username, password : req.body.password, meetingInfo, nylasInfo}    
-    try {
-        users.getData('/' + response.username)
-        console.log("username already exists")
-        res.redirect('http://localhost:' + port + '/signup')
-    } catch (err) {
-        users.push('/' + response.username, response)
-        console.log("user created")
-        res.redirect('http://localhost:' + port + '/users/' + response.username)
+    
+    if(response.email != "" && response.username != "" && response.password != "") {
+        try {
+            users.getData('/' + response.username)
+            console.log("username already exists")
+            res.redirect('http://localhost:' + port + '/signup')
+        } catch (err) {
+            users.push('/' + response.username, response)
+            console.log("user created")
+            res.redirect('http://localhost:' + port + '/users/' + response.username)
+        }
+    } else {
+        console.log("sign up form is incomplete")
+        res.redirect("http://localhost:" + port + "/signup")
     }
 })
 

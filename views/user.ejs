@@ -2,8 +2,15 @@
 	<title><%= settings.username%>'s Profile</title>
 </head>
 <body>
-	<h1>Project Liger</h1>
-    <p>Hello, <%= settings.firstName%>!</p>
-    
-    <a href="http://localhost:<%= port%>">Home</a>
+  <h1>Project Liger</h1>
+  <p>Hello, <%= settings.firstName%>!</p>
+
+  <h3>Meeting Settings</h3>
+  <a>Edit</a>
+  <p>Meeting Title: <%= settings.meetingInfo.meetingTitle%></p>
+  <p>Meeting Link: <a href="<%= settings.meetingInfo.meetingLink%>"><%= settings.meetingInfo.meetingLink%></a></p>
+  <p>Timezone: <%= settings.meetingInfo.timezone%></p>
+  <p>Time Availability: <%= settings.meetingInfo.timeIn%> - <%= settings.meetingInfo.timeOut%></p>
+  
+  <a href="http://localhost:<%= port%>">Home</a>
 </body>
