@@ -33,7 +33,7 @@ app.get('/signup', function(req, res) {
 })
 
 app.post('/signup', function(req, res) {
-    meetingInfo = {meetingTitle: "Sales Meeting", meetingLink: "", timezone: -7, days: [false, true, true, true, true, true, false], timeIn: 9, timeOut: 17, length: 30}
+    meetingInfo = {meetingTitle: "Sales Meeting", meetingLink: "", timezone: -7, days: [false, true, true, true, true, true, false], timeIn: 9, timeOut: 17, meetingLength: 30}
     nylasInfo = {auth: false, ACCESS_TOKEN: null}
     response = {firstName : req.body.first, lastName : req.body.last, email : req.body.email, username : req.body.username, password : req.body.password, meetingInfo, nylasInfo}    
     
@@ -86,4 +86,46 @@ app.get('/users/:username', function(req, res) {
         res.redirect('http://localhost:' + port + '/')
     }
     res.render('user.ejs', {port, settings})
+})
+
+app.get('/users/:username/meetingInfo', function(req, res) {
+    var settings
+    try {
+        settings = users.getData("/" + req.params.username)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+    res.render('meetingInfo.ejs', {port, settings})
+})
+
+app.post('/users/:username/meetingInfo', function(req, res) {
+    var settings
+    try {
+        settings = users.getData("/" + req.params.username)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+
+    settings.meetingInfo.meetingTitle = req.body.meetingTitle
+    settings.meetingInfo.meetingLink = req.body.meetingLink
+    settings.meetingInfo.timezone = Number(req.body.timezone)
+    settings.meetingInfo.timeIn = Number(req.body.timeIn)
+    settings.meetingInfo.timeOut = Number(req.body.timeOut)
+    settings.meetingInfo.meetingLength = Number(req.body.meetingLength)
+
+    settings.meetingInfo.days[0] = Boolean(req.body.sun)
+    settings.meetingInfo.days[1] = Boolean(req.body.mon)
+    settings.meetingInfo.days[2] = Boolean(req.body.tues)
+    settings.meetingInfo.days[3] = Boolean(req.body.wed)
+    settings.meetingInfo.days[4] = Boolean(req.body.thur)
+    settings.meetingInfo.days[5] = Boolean(req.body.fri)
+    settings.meetingInfo.days[6] = Boolean(req.body.sat)
+
+    users.push('/' + settings.username, settings)
+
+    console.log("edited meeting info for " + settings.username)
+
+    res.redirect('http://localhost:' + port + '/users/' + settings.username)
 })

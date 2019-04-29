@@ -5,12 +5,12 @@
   <h1>Project Liger</h1>
   <p>Hello, <%= settings.firstName%>!</p>
 
-  <h3>Meeting Settings</h3>
-  <a>Edit</a>
+  <h3>Meeting Info <a href="http://localhost:<%= port%>/users/<%= settings.username%>/meetingInfo">Edit</a></h3>
   <p>Meeting Title: <%= settings.meetingInfo.meetingTitle%></p>
   <p>Meeting Link: <a href="<%= settings.meetingInfo.meetingLink%>"><%= settings.meetingInfo.meetingLink%></a></p>
   <p>Timezone: <%= settings.meetingInfo.timezone%></p>
   <p>Time Availability: <%= settings.meetingInfo.timeIn%> - <%= settings.meetingInfo.timeOut%></p>
+  <p>Meeting Length: <%= settings.meetingInfo.meetingLength%></p>
   
   <a href="http://localhost:<%= port%>">Home</a>
 </body>
