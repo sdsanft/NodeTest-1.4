@@ -6,21 +6,21 @@
         "username": "sdsanft",
         "password": "12345678",
         "meetingInfo": {
-            "meetingTitle": "Sales Meeting",
-            "meetingLink": "",
+            "meetingLink": "https://github.com/sdsanft",
             "timezone": -7,
             "days": [
                 false,
                 true,
                 true,
-                true,
+                false,
                 true,
                 true,
                 false
             ],
             "timeIn": 9,
             "timeOut": 17,
-            "length": 30
+            "meetingLength": 30,
+            "meetingTitle": "My"
         },
         "nylasInfo": {
             "auth": false,
@@ -34,21 +34,21 @@
         "username": "test01",
         "password": "hahaha69",
         "meetingInfo": {
-            "meetingTitle": "Sales Meeting",
-            "meetingLink": "",
-            "timezone": -7,
+            "meetingTitle": "Sales",
+            "meetingLink": "https://github.com/sdsanft",
+            "timezone": -5,
             "days": [
                 false,
-                true,
-                true,
-                true,
-                true,
-                true,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
-            "timeIn": 9,
-            "timeOut": 17,
-            "length": 30
+            "timeIn": 8,
+            "timeOut": 13,
+            "meetingLength": 45
         },
         "nylasInfo": {
             "auth": false,
