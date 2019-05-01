@@ -4,23 +4,23 @@
   <body>
     <h1>Project Liger</h1>
     <form action="http://localhost:<%= port%>/users/<%= settings.username%>/meetingInfo" method="POST">
-        Meeting Title <input type="text" name="meetingTitle" value=<%= settings.meetingInfo.meetingTitle%>> <br>
-        Meeting Link <input type="url" name="meetingLink" value=<%= settings.meetingInfo.meetingLink%>> <br>
+        Meeting Title <input type="text" name="meetingTitle" value="<%= settings.meetingInfo.meetingTitle%>"> <br>
+        Meeting Link <input type="url" name="meetingLink" value="<%= settings.meetingInfo.meetingLink%>"> <br>
         Timezone <input type="number" name="timezone" value=<%= settings.meetingInfo.timezone%>> <br>
         Time in <input type="number" name="timeIn" value=<%= settings.meetingInfo.timeIn%>> <br>
         Time out <input type="number" name="timeOut" value=<%= settings.meetingInfo.timeOut%>> <br>
         Days <br>
-            Sun <input type="checkbox" name="sun" value=<%= settings.meetingInfo.days[0]%>>
-            Mon <input type="checkbox" name="mon" value=<%= settings.meetingInfo.days[1]%>>
-            Tues <input type="checkbox" name="tues" value=<%= settings.meetingInfo.days[2]%>>
-            Wed <input type="checkbox" name="wed" value=<%= settings.meetingInfo.days[3]%>>
-            Thurs <input type="checkbox" name="thur" value=<%= settings.meetingInfo.days[4]%>>
-            Fri <input type="checkbox" name="fri" value=<%= settings.meetingInfo.days[5]%>>
-            Sat <input type="checkbox" name="sat" value=<%= settings.meetingInfo.days[6]%>> <br>
+            Sun <input type="checkbox" name="days" value="sun">    
+            Mon <input type="checkbox" name="days" value="mon">    
+            Tues <input type="checkbox" name="days" value="tues">    
+            Wed <input type="checkbox" name="days" value="wed">     
+            Thurs <input type="checkbox" name="days" value="thurs">    
+            Fri <input type="checkbox" name="days" value="fri">     
+            Sat <input type="checkbox" name="days" value="sat"> <br>
         Meeting Length <input type="number" name="meetingLength" value=<%= settings.meetingInfo.meetingLength%>> <br>
         <input type="submit" value="submit">
     </form>
   
-    <a href="http://localhost:<%= port%>/signup">Create Account</a>
+    <a href="http://localhost:<%= port%>/users/<%= settings.username%>">Back</a>
     <a href="http://localhost:<%= port%>">Home</a>
   </body>

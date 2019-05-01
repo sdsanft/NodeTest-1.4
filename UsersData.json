@@ -10,9 +10,9 @@
             "timezone": -7,
             "days": [
                 false,
-                true,
-                true,
                 false,
+                false,
+                true,
                 true,
                 true,
                 false
@@ -20,7 +20,7 @@
             "timeIn": 9,
             "timeOut": 17,
             "meetingLength": 30,
-            "meetingTitle": "My"
+            "meetingTitle": "My Sales Meeting"
         },
         "nylasInfo": {
             "auth": false,
@@ -39,9 +39,9 @@
             "timezone": -5,
             "days": [
                 false,
-                false,
-                false,
-                false,
+                true,
+                true,
+                true,
                 false,
                 false,
                 false
