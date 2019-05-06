@@ -35,7 +35,8 @@ app.get('/signup', function(req, res) {
 app.post('/signup', function(req, res) {
     meetingInfo = {meetingTitle: "Sales Meeting", meetingLink: "", timezone: -7, days: [false, true, true, true, true, true, false], timeIn: 9, timeOut: 17, meetingLength: 30}
     nylasInfo = {auth: false, ACCESS_TOKEN: null}
-    response = {firstName : req.body.first, lastName : req.body.last, email : req.body.email, username : req.body.username, password : req.body.password, meetingInfo, nylasInfo}    
+    meetings = []
+    response = {firstName : req.body.first, lastName : req.body.last, email : req.body.email, username : req.body.username, password : req.body.password, meetingInfo, nylasInfo, meetings}    
     
     if(response.email != "" && response.username != "" && response.password != "") {
         try {
@@ -144,4 +145,60 @@ app.post('/users/:username/meetingInfo', function(req, res) {
     console.log("edited meeting info for " + settings.username)
 
     res.redirect('http://localhost:' + port + '/users/' + settings.username)
+})
+
+app.get('/users/:username/meeting/new', function(req, res) {
+    var settings
+    try {
+        settings = users.getData("/" + req.params.username)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+
+    meetingId = settings.meetings.length;
+    meeting = {meetingId, scheduled: false, date: null, time: null, clientName: null, clientEmail: null}
+
+    settings.meetings.push(meeting)
+    users.push('/' + settings.username, settings)
+
+    res.redirect('http://localhost:' + port + '/users/' + req.params.username + '/meeting/' + meetingId)
+})
+
+app.get('/users/:username/meeting', function(req, res) {
+    var settings
+    try {
+        settings = users.getData("/" + req.params.username)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+
+    settings.meetings.forEach(function(meeting) {
+        if(meeting.scheduled) {
+            console.log("===Scheduled===    Meeting ID: " + meeting.meetingId + ", Date: " + meeting.date + ", Time: " + meeting.time)
+        } else {
+            console.log("===Unscheduled===  Meeting ID: " + meeting.meetingId)
+        }
+    })
+
+    res.render("meetings.ejs", {port, settings})
+})
+
+app.get("/users/:username/meeting/:id", function(req, res) {
+    var settings
+    try {
+        settings = users.getData("/" + req.params.username)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+
+    meeting = settings.meetings[Number(req.params.id)]
+
+    if(meeting.scheduled) {
+        res.render("meetingScheduled.ejs", {port, settings, meeting})
+    } else {
+        res.render("meetingUnscheduled.ejs", {port, settings, meeting})
+    }
 })

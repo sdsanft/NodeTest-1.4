@@ -10,8 +10,8 @@
             "timezone": -7,
             "days": [
                 false,
-                false,
-                false,
+                true,
+                true,
                 true,
                 true,
                 true,
@@ -25,7 +25,25 @@
         "nylasInfo": {
             "auth": false,
             "ACCESS_TOKEN": null
-        }
+        },
+        "meetings": [
+            {
+                "meetingId": 0,
+                "scheduled": true,
+                "date": "Sunday, May 5, 2019",
+                "time": "11:00",
+                "clientName": "John Smith",
+                "clientEmail": "example@email.com"
+            },
+            {
+                "meetingId": 1,
+                "scheduled": false,
+                "date": null,
+                "time": null,
+                "clientName": null,
+                "clientEmail": null
+            }
+        ]
     },
     "test01": {
         "firstName": "test",
@@ -53,6 +71,7 @@
         "nylasInfo": {
             "auth": false,
             "ACCESS_TOKEN": null
-        }
+        },
+        "meetings": []
     }
 }

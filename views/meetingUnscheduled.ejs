@@ -1,0 +1,16 @@
+<head>
+	<title><%= settings.username%>'s Profile</title>
+</head>
+<body>
+  <h1>Project Liger</h1>
+  <p>Hello, <%= settings.firstName%>!</p>
+
+  <p>Meeting Unscheduled</p>
+  <p>Meeting ID: <%= meeting.meetingId%></p>
+  <p>Send this link to a client so they can schedule a meeting with you!</p>
+  <p>http://localhost:<%= port%>/meeting/schedule/<%= settings.username%>/<%= meeting.meetingId%></p>
+
+  <h3><a href="http://localhost:<%= port%>/users/<%= settings.username%>/meeting/new">Create Meeting</a></h3>
+  <h3><a href="http://localhost:<%= port%>/users/<%= settings.username%>/meeting">View Meetings</a></h3>
+  <a href="http://localhost:<%= port%>">Home</a>
+</body>
