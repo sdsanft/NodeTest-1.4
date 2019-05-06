@@ -115,13 +115,29 @@ app.post('/users/:username/meetingInfo', function(req, res) {
     settings.meetingInfo.timeOut = Number(req.body.timeOut)
     settings.meetingInfo.meetingLength = Number(req.body.meetingLength)
 
-    settings.meetingInfo.days[0] = Boolean(req.body.sun)
-    settings.meetingInfo.days[1] = Boolean(req.body.mon)
-    settings.meetingInfo.days[2] = Boolean(req.body.tues)
-    settings.meetingInfo.days[3] = Boolean(req.body.wed)
-    settings.meetingInfo.days[4] = Boolean(req.body.thur)
-    settings.meetingInfo.days[5] = Boolean(req.body.fri)
-    settings.meetingInfo.days[6] = Boolean(req.body.sat)
+    if (typeof req.body.days == "string") {
+        settings.meetingInfo.days[0] = req.body.days == 'sun';
+        settings.meetingInfo.days[1] = req.body.days == 'mon';
+        settings.meetingInfo.days[2] = req.body.days == 'tues';
+        settings.meetingInfo.days[3] = req.body.days == 'wed';
+        settings.meetingInfo.days[4] = req.body.days == 'thurs';
+        settings.meetingInfo.days[5] = req.body.days == 'fri';
+        settings.meetingInfo.days[6] = req.body.days == 'sat';
+    } else if (typeof req.body.days == "object") {
+        settings.meetingInfo.days[0] = req.body.days.includes('sun');
+        settings.meetingInfo.days[1] = req.body.days.includes('mon');
+        settings.meetingInfo.days[2] = req.body.days.includes('tues');
+        settings.meetingInfo.days[3] = req.body.days.includes('wed');
+        settings.meetingInfo.days[4] = req.body.days.includes('thurs');
+        settings.meetingInfo.days[5] = req.body.days.includes('fri');
+        settings.meetingInfo.days[6] = req.body.days.includes('sat');
+    } else {
+        settings.meetingInfo.days.forEach(function(day) {
+            day = false;
+        })
+    }
+
+    console.log(settings.meetingInfo)
 
     users.push('/' + settings.username, settings)
 
