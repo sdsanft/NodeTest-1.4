@@ -4,6 +4,16 @@
 <body>
   <h1>Project Liger</h1>
   <p>Hello, <%= settings.firstName%>!</p>
+
+  <% settings.meetings.forEach(function(meeting) { %>
+    <% if(meeting.scheduled) { %>
+      <p><%= "===Scheduled===    Meeting ID: " + meeting.meetingId + ", Date: " + meeting.date + ", Time: " + meeting.time + ", Client: " + meeting.clientName + ", " + meeting.clientEmail %></p>
+      <a href="http://localhost:<%= port%>/users/<%= settings.username%>/meeting/<%= meeting.meetingId%>">View Meeting</a>
+    <% } else { %>
+      <p><%= "==Unscheduled==  Meeting ID: " + meeting.meetingId %></p>
+      <a href="http://localhost:<%= port%>/users/<%= settings.username%>/meeting/<%= meeting.meetingId%>">View Meeting</a>
+    <% } %>
+  <% }); %>
   
   <h3><a href="http://localhost:<%= port%>/users/<%= settings.username%>/meeting/new">Create Meeting</a></h3>
   <a href="http://localhost:<%= port%>">Home</a>

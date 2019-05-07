@@ -79,6 +79,7 @@ app.post('/signin', function(req, res) {
 })
 
 app.get('/users/:username', function(req, res) {
+
     var settings
     try {
         settings = users.getData("/" + req.params.username)
@@ -173,14 +174,6 @@ app.get('/users/:username/meeting', function(req, res) {
         console.log("user does not exist")
         res.redirect('http://localhost:' + port + '/')
     }
-
-    settings.meetings.forEach(function(meeting) {
-        if(meeting.scheduled) {
-            console.log("===Scheduled===    Meeting ID: " + meeting.meetingId + ", Date: " + meeting.date + ", Time: " + meeting.time)
-        } else {
-            console.log("===Unscheduled===  Meeting ID: " + meeting.meetingId)
-        }
-    })
 
     res.render("meetings.ejs", {port, settings})
 })
