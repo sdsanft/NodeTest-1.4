@@ -7,7 +7,7 @@
 
   <% settings.meetings.forEach(function(meeting) { %>
     <% if(meeting.scheduled) { %>
-      <p><%= "===Scheduled===    Meeting ID: " + meeting.meetingId + ", Date: " + meeting.date + ", Time: " + meeting.time + ", Client: " + meeting.clientName + ", " + meeting.clientEmail %></p>
+      <p><%= "===Scheduled===    Meeting ID: " + meeting.meetingId + ", Date: " + new Date(meeting.date).toDateString() + ", Time: " + meeting.time + ", Client: " + meeting.clientName + ", " + meeting.clientEmail %></p>
       <a href="http://localhost:<%= port%>/users/<%= settings.username%>/meeting/<%= meeting.meetingId%>">View Meeting</a>
     <% } else { %>
       <p><%= "==Unscheduled==  Meeting ID: " + meeting.meetingId %></p>

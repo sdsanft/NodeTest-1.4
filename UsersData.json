@@ -37,11 +37,11 @@
             },
             {
                 "meetingId": 1,
-                "scheduled": false,
-                "date": null,
-                "time": null,
-                "clientName": null,
-                "clientEmail": null
+                "scheduled": true,
+                "date": "2019-05-15T19:00:00.000Z",
+                "time": "13:00",
+                "clientName": "John Smith",
+                "clientEmail": "example@email.com"
             }
         ]
     },
@@ -72,6 +72,23 @@
             "auth": false,
             "ACCESS_TOKEN": null
         },
-        "meetings": []
+        "meetings": [
+            {
+                "meetingId": 0,
+                "scheduled": true,
+                "date": "2019-05-13T18:00:00.000Z",
+                "time": "12:00",
+                "clientName": null,
+                "clientEmail": null
+            },
+            {
+                "meetingId": 1,
+                "scheduled": false,
+                "date": null,
+                "time": null,
+                "clientName": null,
+                "clientEmail": null
+            }
+        ]
     }
 }

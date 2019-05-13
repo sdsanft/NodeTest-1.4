@@ -4,7 +4,8 @@
   "description": "testing MySQL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch index.js"
   },
   "author": "Samuel Sanft",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mysql": "^2.17.1",
-    "node-json-db": "^0.11.0"
+    "node-json-db": "^0.11.0",
+    "nodemon": "^1.19.0"
   }
 }

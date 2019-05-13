@@ -195,3 +195,71 @@ app.get("/users/:username/meeting/:id", function(req, res) {
         res.render("meetingUnscheduled.ejs", {port, settings, meeting})
     }
 })
+
+app.get('/meeting/schedule/:user/:id', function(req, res) {
+    var settings;
+
+    try {
+        settings = users.getData("/" + req.params.user)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+
+    var meeting;
+
+    settings.meetings.forEach(function(mtg) {
+        if(mtg.meetingId == parseInt(req.params.id, 10)) {
+            meeting = mtg;
+        }
+    })
+
+    if(meeting == null || meeting.scheduled) {
+        res.redirect('http://localhost:' + port + '/meeting/notFound')
+    } else {
+        res.render('schedule.ejs', {port, settings, id: req.params.id})
+    }
+})
+
+app.post('/meeting/:user/:id', function(req, res) {
+    var settings;
+    id = parseInt(req.params.id, 10)
+
+    try {
+        settings = users.getData("/" + req.params.user)
+    } catch (err) {
+        console.log("user does not exist")
+        res.redirect('http://localhost:' + port + '/')
+    }
+
+    var meeting;
+
+    settings.meetings.forEach(function(mtg) {
+        if(mtg.meetingId == id) {
+            meeting = mtg;
+        }
+    })
+
+    if(meeting == null || meeting.scheduled) {
+        console.log("Invalid post")
+    } else {
+        settings.meetings[id].time = Math.floor(parseFloat(req.body.time)).toString()
+        if(req.body.time.substring(2) == ".5") {
+            settings.meetings[id].time += ":30"
+        } else {
+            settings.meetings[id].time += ":00"
+        }
+        
+        settings.meetings[id].date = new Date(req.body.date + 'T' + settings.meetings[id].time + ':00');
+
+        settings.meetings[id].scheduled = true;
+
+        users.push("/" + settings.username, settings)
+    }
+
+    res.redirect('http://localhost:' + port)
+})
+
+app.get('/meeting/notFound', function(req, res) {
+    res.render('meetingNotFound.ejs', {port})
+})
