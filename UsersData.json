@@ -20,7 +20,7 @@
             "timeIn": 9,
             "timeOut": 17,
             "meetingLength": 30,
-            "meetingTitle": "My Sales Meeting"
+            "meetingTitle": "Meet and Greet"
         },
         "nylasInfo": {
             "auth": false,
@@ -42,6 +42,22 @@
                 "time": "13:00",
                 "clientName": "John Smith",
                 "clientEmail": "example@email.com"
+            },
+            {
+                "meetingId": 2,
+                "scheduled": true,
+                "date": "2019-05-23T18:00:00.000Z",
+                "time": "12:00",
+                "clientName": null,
+                "clientEmail": null
+            },
+            {
+                "meetingId": 3,
+                "scheduled": true,
+                "date": "2019-05-23T20:00:00.000Z",
+                "time": "14:00",
+                "clientName": null,
+                "clientEmail": null
             }
         ]
     },

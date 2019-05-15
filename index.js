@@ -25,6 +25,7 @@ var users = new jsondb("UsersData", true, true, '/');
 
 //Managing HTTP Requests
 app.get('/', function(req, res) {
+    console.log("HTTP GET '/'")
     res.render('main.ejs', {port})
 })
 
@@ -55,10 +56,12 @@ app.post('/signup', function(req, res) {
 })
 
 app.get('/signin', function(req, res) {
+    console.log("HTTP GET '/signin'")
 	res.render('signIn.ejs', {port})
 })
 
 app.post('/signin', function(req, res) {
+    console.log("HTTP POST '/signin'")
     response = {username: req.body.username, password: req.body.password}
     var credentials
 
@@ -66,7 +69,6 @@ app.post('/signin', function(req, res) {
         credentials = users.getData('/' + response.username)
 
         if(response.password == credentials.password) {
-            console.log (response.username + " signed in")
             res.redirect('http://localhost:' + port + '/users/' + response.username)
         } else {
             console.log ("incorrect password")
@@ -79,6 +81,7 @@ app.post('/signin', function(req, res) {
 })
 
 app.get('/users/:username', function(req, res) {
+    console.log("HTTP GET '/users/" + req.params.username + "'")
 
     var settings
     try {
@@ -87,6 +90,7 @@ app.get('/users/:username', function(req, res) {
         console.log("user does not exist")
         res.redirect('http://localhost:' + port + '/')
     }
+
     res.render('user.ejs', {port, settings})
 })
 
